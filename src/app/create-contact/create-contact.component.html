@@ -1,0 +1,87 @@
+<form #createContactFormGp="ngForm" (ngSubmit)='createEditContact(createContactFormGp)'>
+  <h2 class="text-left text-primary">Contact Details</h2>
+  <hr>
+  <input type="hidden" id="id" name="id" [ngModel]="model?.id">
+  <div class="row">
+    <label style="width: 25%;" for="name">Name: </label>
+    <input style="width: 75%;" id="name" name="name" required class="form-control" type="text" placeholder="Name" #name="ngModel"
+    [ngModel]="model?.name" (ngModelChange)="model?.name"
+    >
+    <div *ngIf="name.invalid && name.errors && name.touched">
+      <span style="color: red;">Name is required</span>      
+    </div>
+  </div>
+  <div class="row">
+    <label style="width: 25%;" for="jobTitle">Job Title: </label>
+    <input style="width: 75%;" id="jobTitle" name="jobTitle" required class="form-control" type="text" placeholder="Job Title" #jobTitle="ngModel"
+    [ngModel]="model?.jobTitle" (ngModelChange)="model?.jobTitle"
+    >
+    <div *ngIf="jobTitle.invalid && jobTitle.errors && jobTitle.touched">
+      <span style="color: red;">Job Title is required</span>      
+    </div>
+  </div>
+  <div class="row">
+    <label style="width: 25%;" for="company">Company: </label>
+    <select style="width: 75%;" name="company" id="company" required class="form-control" 
+    [ngModel]="model?.company" (ngModelChange)="model?.company" #company="ngModel">
+      <option [ngValue]="null">---Select---</option>  
+      <option value="disney" [selected]="model?.company.toLowerCase() == 'disney'">Disney</option>
+      <option value="hp" [selected]="model?.company.toLowerCase() == 'hp'">HP</option>
+      <option value="microsoft" [selected]="model?.company.toLowerCase() == 'microsoft'">Microsoft</option>
+      <option value="dell" [selected]="model?.company.toLowerCase() == 'dell'">Dell</option>
+    </select>
+    <div *ngIf="company.invalid && company.errors && company.touched">
+      <span style="color: red;">Please select a company from the list.</span>      
+    </div>
+  </div>
+  <div class="row">
+    <label style="width: 25%;" for="phone">Phone: </label>
+    <input style="width: 75%;" name="phone" id="phone" class="form-control" type="text" placeholder="Phone" #phone="ngModel"
+    [ngModel]="model?.phone || phone.value" (ngModelChange)="model?.phone"
+    required pattern='^((\\+91-?)|0)?[0-9]{10}$'
+    >
+    <div *ngIf="phone.touched && phone.invalid">
+      <span *ngIf="phone.errors.required" style="color: red;">Mobile Number is required.</span>
+      <span *ngIf="phone.errors.pattern" style="color: red;">Please, Enter 10 digit Mobile Number.</span>
+  </div>
+  </div>
+  
+  <div class="row">
+    <label style="width: 25%;" for="address">Address: </label>
+    <input style="width: 75%;" id="address" name="address" required class="form-control" type="text" 
+    placeholder="Address" #address="ngModel"
+    [ngModel]="model?.address" (ngModelChange)="model?.address"
+    >
+  </div>
+  <div class="row">
+    <label style="width: 25%;" for="email">Email: </label>
+    <input style="width: 75%;" name="email" id="email" required email class="form-control" 
+    type="text" placeholder="Email" #email="ngModel"
+    [ngModel]="model?.email" (ngModelChange)="model?.email"
+    >
+    <div *ngIf="email.touched && email.invalid">
+      <span *ngIf="email.errors.required" style="color: red;">Email is required.</span>
+      <span *ngIf="email.errors.email" style="color: red;">Please input valid email address.</span>
+  </div>
+  </div>
+  <div class="row">
+    <label style="width: 25%;" for="lastDateContacted">Last Date Contacted: </label>
+    <input style="width: 75%;" name="lastDateContacted" id="lastDateContacted" required class="form-control" 
+    type="text" placeholder="Last Date Contacted" 
+    #lastDateContacted="ngModel"
+    [ngModel]="model?.lastDateContacted | date:'shortDate':'ist'" 
+    (ngModelChange)="model?.lastDateContacted" ng-model-options="{timezone: 'ist'}"
+    bsDatepicker [bsConfig]="bsConfig"
+    >
+  </div>
+  <div class="row">
+    <label style="width: 25%;" for="comments">Comments: </label>
+    <textarea style="width: 75%;" name="comments" id="comments" class="form-control" placeholder="Comments" 
+    [ngModel]="model?.comments" (ngModelChange)="model?.comments"></textarea>
+  </div>
+  <div class="form-group text-center button-gp" >
+    <button style="width: 5rem;" class="btn btn-success" type="submit" 
+    [disabled]="createContactFormGp.invalid">Save</button>
+    <button style="width: 5rem;" class="btn btn-default" type="button" (click)='cancel(createContactFormGp)'>Cancel</button>
+  </div>
+</form>

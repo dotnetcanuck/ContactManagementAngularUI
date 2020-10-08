@@ -1,0 +1,19 @@
+form{
+    width: 30%;
+}
+
+.row{
+    padding: 5px;
+}
+
+input,select{
+    height: 2.5rem;
+}
+
+.button-gp{
+    margin-top: 1rem;
+}
+
+span{
+    padding-left: 7.5rem;
+}

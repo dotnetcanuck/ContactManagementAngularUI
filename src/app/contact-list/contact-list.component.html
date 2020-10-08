@@ -1,0 +1,29 @@
+<table *ngIf="contacts; else loading" class="table table-striped table-hover table-responsive-md">  
+  <thead class="header">
+  <tr>
+    <th scope="col">Name(Job Title)</th>
+    <th scope="col">Company</th>
+    <th scope="col">Phone</th>
+    <th scope="col">Address</th>
+    <th scope="col">Email</th>
+    <th scope="col">Last Date Contacted</th>
+  </tr>
+  </thead>
+  <tbody>
+    <tr class="contact-row" *ngFor="let c of contacts" (click) = "editContact(c)">
+      <td scope="row"> {{c.name}} <br> {{c.jobTitle}}</td>
+      <td scope="row">{{c.company}}</td>
+      <td scope="row">{{c.phone|phone:'US'}}</td>
+      <td scope="row">{{c.address}}</td>
+      <td scope="row">{{c.email}}</td>
+      <td scope="row">{{c.lastDateContacted | date:'shortDate'}}</td>
+    </tr>      
+  </tbody>
+  <ng-template #nocontent>
+    <span>No contacts available</span>
+  </ng-template> 
+</table>
+
+<ng-template #loading>
+  <span>loading contacts...</span>
+</ng-template>

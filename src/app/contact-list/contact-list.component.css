@@ -1,0 +1,15 @@
+.contact-row{
+    animation: fadeIn 600ms,
+}
+
+.header{
+  width: 100%;  
+}
+.table{
+    margin-top: 2rem;
+    width: auto;
+}
+
+.contact-row:hover{
+  cursor: pointer;
+}

@@ -1,0 +1,18 @@
+@import "../node_modules/font-awesome/css/font-awesome.min.css";
+@import "../node_modules/alertifyjs/build/css/alertify.min.css";
+@import "../node_modules/alertifyjs/build/css/themes/bootstrap.min.css";
+@import "../node_modules/ngx-bootstrap/datepicker/bs-datepicker.css";
+
+body{
+    padding: 2rem 0 0 2rem;
+    font-family: sans-serif;
+}
+
+
+button{
+    cursor: pointer;
+}
+
+.btn{
+    margin: 3px;
+}
